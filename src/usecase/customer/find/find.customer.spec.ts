@@ -36,7 +36,7 @@ describe("Test find customer use case", () => {
     const address = new Address("Lalau St", 123, "Zipcode", "Lalauland");
     customer.changeAddress(address);
 
-    const customerCreated = await customerRepository.create(customer);
+    await customerRepository.create(customer);
 
     const input: InputFindCustomerDto = {
       id: "123",
@@ -44,7 +44,7 @@ describe("Test find customer use case", () => {
 
     const output: OutputFindCustomerDto = {
       id: "123",
-      name: "John",
+      name: "John Doe",
       address: {
         street: "Lalau St",
         number: 123,
@@ -53,7 +53,7 @@ describe("Test find customer use case", () => {
       },
     };
 
-    const result = usecase.execute(input);
+    const result = await usecase.execute(input);
 
     expect(result).toEqual(output);
   });
