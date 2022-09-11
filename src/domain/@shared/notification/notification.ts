@@ -19,4 +19,8 @@ export class Notification {
 
     return message;
   }
+
+  public hasErrors(): boolean {
+    return this.errors.length > 0;
+  }
 }

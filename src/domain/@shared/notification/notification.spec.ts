@@ -7,7 +7,6 @@ describe("Unit Test - Notification", () => {
       message: "error message",
       context: "customer",
     };
-
     notification.addError(error);
 
     expect(notification.messages("customer")).toBe("customer: error message,");
@@ -16,7 +15,6 @@ describe("Unit Test - Notification", () => {
       message: "error message 2",
       context: "customer",
     };
-
     notification.addError(error2);
 
     expect(notification.messages("customer")).toBe(
@@ -27,7 +25,6 @@ describe("Unit Test - Notification", () => {
       message: "error message 3",
       context: "order",
     };
-
     notification.addError(error3);
 
     expect(notification.messages("customer")).toBe(
@@ -37,5 +34,16 @@ describe("Unit Test - Notification", () => {
     expect(notification.messages()).toBe(
       "customer: error message,customer: error message 2,order: error message 3,"
     );
+  });
+
+  it("should check if notification has at least one error", () => {
+    const notification = new Notification();
+    const error = {
+      message: "error message",
+      context: "customer",
+    };
+    notification.addError(error);
+
+    expect(notification.hasErrors()).toBe(true);
   });
 });
