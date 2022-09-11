@@ -1,12 +1,20 @@
-export interface NotificationError {
+export interface NotificationErrorProps {
   message: string;
   context: string;
 }
 
 export class Notification {
-  private errors: NotificationError[] = [];
+  private errors: NotificationErrorProps[] = [];
 
-  public addError(error: NotificationError): void {
+  public getErrors(): NotificationErrorProps[] {
+    return this.errors;
+  }
+
+  public hasErrors(): boolean {
+    return this.errors.length > 0;
+  }
+
+  public addError(error: NotificationErrorProps): void {
     this.errors.push(error);
   }
 
@@ -18,9 +26,5 @@ export class Notification {
     });
 
     return message;
-  }
-
-  public hasErrors(): boolean {
-    return this.errors.length > 0;
   }
 }
