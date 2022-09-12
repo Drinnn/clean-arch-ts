@@ -88,5 +88,15 @@ describe("E2E Test - Customer", () => {
     expect(customer2.address.number).toEqual(321);
     expect(customer2.address.zip).toEqual("654321");
     expect(customer2.address.city).toEqual("Fafaland");
+
+    const listResponseXML = await request(app)
+      .get("/customer")
+      .set("Accept", "application/xml")
+      .send();
+
+    expect(listResponseXML.status).toBe(200);
+    expect(listResponseXML.text).toContain(
+      `<?xml version="1.0" encoding="UTF-8"?`
+    );
   });
 });
